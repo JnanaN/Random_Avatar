@@ -1,0 +1,13 @@
+<!-- avatar.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Random Avatar</title>
+</head>
+<body>
+    <h1>Random Avatar</h1>
+    {% comment %} <img src="data:image/svg+xml;base64,{{ avatar_svg }}" alt="Random Avatar"> {% endcomment %}
+    {{ avatar_svg|safe }}
+</body>
+</html>
