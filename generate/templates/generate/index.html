@@ -1,13 +1,101 @@
-<!-- avatar.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Random Avatar</title>
-</head>
-<body>
-    <h1>Random Avatar</h1>
-    {% comment %} <img src="data:image/svg+xml;base64,{{ avatar_svg }}" alt="Random Avatar"> {% endcomment %}
-    {{ avatar_svg|safe }}
-</body>
-</html>
+{% extends "generate/base.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+
+{% block content %}
+    <h1> GENERATE RANDOM AVATAR </h1>
+    <form id="form">
+        <input type="text" name="seed" placeholder="Enter seed" id="seed" required>
+        <button type="submit">Generate Avatar</button>
+    </form>
+    <button id="random">Generate Random</button>
+    <div id="avatar"></div>
+    <script>
+        btn = document.getElementById("random")
+        el = document.getElementById("avatar")
+        form = document.getElementById("form");
+
+        
+        btn.addEventListener("click", async ()=>{
+            res = await fetch("/random")
+            svg_content = await res.text()
+            el.innerHTML = svg_content
+
+
+            {% comment %} extra {% endcomment %}
+            document.getElementById("url").innerHTML = "";
+        })
+
+        
+        form.addEventListener("submit", async (e)=>{
+            e.preventDefault()
+            text = document.getElementById("seed").value
+            res = await fetch(`/generate/${text}`)
+            svg_content = await res.text()
+            el.innerHTML = svg_content
+
+
+            const baseURL = window.location.origin;  // to get the base URL
+            const url = `${baseURL}/generate/${text}`;
+            const urlDiv = document.createElement("div");
+            urlDiv.innerHTML = `Copy URL: <a href="${url}">${url}</a>`;
+            urlDiv.id = "url";
+            el.appendChild(urlDiv);
+
+
+            // to download the generated avatar 
+            
+
+            // Create a "Download PNG" button
+            const downloadPNGButton = document.createElement("button");
+            downloadPNGButton.innerHTML = "Download PNG";
+            downloadPNGButton.id = "downloadPNGButton";
+            el.appendChild(downloadPNGButton);
+
+            // Add event listener to the Download PNG button
+            downloadPNGButton.addEventListener("click", function () {
+                const canvas = document.createElement("canvas");
+                canvas.width = 256;
+                canvas.height = 256;
+                const context = canvas.getContext("2d");
+                const img = new Image();
+
+                img.onload = function () {
+                    context.drawImage(img, 0, 0, 256, 256);
+                    const pngDataUrl = canvas.toDataURL('image/png');
+                    
+                    const a = document.createElement('a');
+                    a.href = pngDataUrl;
+                    a.download = 'avatar.png';
+                    a.click();
+                };
+
+                img.src = `data:image/svg+xml;base64,${btoa(svg_content)}`;
+            });
+            const downloadSVGButton = document.createElement("button");
+            downloadSVGButton.innerHTML = "Download SVG";
+            downloadSVGButton.id = "downloadSVGButton";
+            el.appendChild(downloadSVGButton);
+
+            // Add event listener to the Download SVG button
+            downloadSVGButton.addEventListener("click", function () {
+                
+                const svgContent = el.innerHTML;
+                const fullSVGContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+                ${svgContent}`;
+
+                const svgBlob = new Blob([svg_content], { type: 'image/svg+xml' });
+                const svgURL = URL.createObjectURL(svgBlob);
+                const a = document.createElement('a');
+                a.href = svgURL;
+                a.download = 'avatar.svg';
+                a.click();
+                URL.revokeObjectURL(svgURL);
+            });
+        })
+    </script>
+{% endblock %}

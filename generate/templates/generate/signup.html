@@ -10,6 +10,11 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Sign Up</button>
+        
+    </form>
+    <form method="get" action="{% url 'login' %}">
+        <p>Already have an existing account? </p>
+        <button type="submit">LogIn</button>
     </form>
 </body>
 </html>
