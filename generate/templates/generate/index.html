@@ -5,7 +5,12 @@ Home Page
 {% endblock %}
 
 
+
+
+
 {% block content %}
+
+
     <h1> GENERATE RANDOM AVATAR </h1>
     <form id="form">
         <input type="text" name="seed" placeholder="Enter seed" id="seed" required>
@@ -56,25 +61,46 @@ Home Page
             el.appendChild(downloadPNGButton);
 
             // Add event listener to the Download PNG button
+            
+
+
             downloadPNGButton.addEventListener("click", function () {
-                const canvas = document.createElement("canvas");
-                canvas.width = 256;
-                canvas.height = 256;
-                const context = canvas.getContext("2d");
+                const svgBlob = new Blob([svg_content], { type: 'image/svg+xml' });
+                const svgURL = URL.createObjectURL(svgBlob);
                 const img = new Image();
-
+                
                 img.onload = function () {
-                    context.drawImage(img, 0, 0, 256, 256);
-                    const pngDataUrl = canvas.toDataURL('image/png');
-                    
-                    const a = document.createElement('a');
-                    a.href = pngDataUrl;
-                    a.download = 'avatar.png';
-                    a.click();
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 256;
+                    canvas.height = 256;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, 256, 256);
+            
+                    // Convert canvas to PNG data URL
+                    canvas.toBlob(function (blob) {
+                        const pngURL = URL.createObjectURL(blob);
+            
+                        // Create a download link for the PNG
+                        const a = document.createElement('a');
+                        a.href = pngURL;
+                        a.download = 'avatar.png';
+                        a.click();
+            
+                        // Clean up
+                        URL.revokeObjectURL(pngURL);
+                    }, 'image/png');
                 };
-
-                img.src = `data:image/svg+xml;base64,${btoa(svg_content)}`;
+                
+                img.src = svgURL;
             });
+            
+            
+
+
+
+
+
+
             const downloadSVGButton = document.createElement("button");
             downloadSVGButton.innerHTML = "Download SVG";
             downloadSVGButton.id = "downloadSVGButton";
@@ -82,7 +108,7 @@ Home Page
 
             // Add event listener to the Download SVG button
             downloadSVGButton.addEventListener("click", function () {
-                
+
                 const svgContent = el.innerHTML;
                 const fullSVGContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
                 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">

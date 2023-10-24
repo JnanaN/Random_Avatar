@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login , authenticate
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 
 color_codes = {
@@ -35,20 +36,14 @@ def avatar_input(request, seed):
     ascii_sum = sum(ord(char) for char in user_input)
     color = ascii_sum % 15 + 1
     eye = ascii_sum % 10 + 1
-    mouth = ascii_sum % 11
+    mouth = ascii_sum % 10+1
     final_svg = avatar(color, eye, mouth)
     return render(request, "generate/random.html", {'avatar_svg': final_svg})
 
 
-# Generate random hexadecimal color value
-def generate_random_hex_color():  
-        color = "#{:02X}{:02X}{:02X}".format(random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        return color
-
-
 # function to generate the svg given eyes and mouth
 def avatar(color, eye , mouth):
-    
+     
     eye_path = f"generate/eyes/{eye}.svg"
     with open(eye_path, "r") as eye_file:
             eye_svg = eye_file.read()
@@ -78,18 +73,27 @@ def random_avatar(request):
     final_svg = avatar(random_color,random_eye , random_mouth)
     return render(request, "generate/random.html", {'avatar_svg': final_svg})
 
+class CustomRegistrationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ("username", "password1", "password2")
+
+    # Customize the error messages for password fields
+    error_messages = {
+        'password_mismatch': "The two password fields didn't match.",
+    }
 
 
 # signup
 def signup(request):
       if request.method == "POST":
-            form = UserCreationForm(request.POST)
+            form = CustomRegistrationForm(request.POST)
             if form.is_valid():
                   user = form.save()
                   login(request,user)
                   return redirect("login")
       else :
-            form = UserCreationForm()
+            form = CustomRegistrationForm()
       return render(request, "generate/signup.html", {"form" : form})
 
 # login

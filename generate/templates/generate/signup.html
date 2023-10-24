@@ -1,20 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up</title>
-</head>
-<body>
-    <h1>Sign Up</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
-        
-    </form>
-    <form method="get" action="{% url 'login' %}">
-        <p>Already have an existing account? </p>
-        <button type="submit">LogIn</button>
-    </form>
-</body>
-</html>
+{% extends "generate/base.html" %}
+{% load static %}
+
+{% block title %}
+Login Page
+{% endblock %}
+
+{% block css_files %}
+    <link rel ="stylesheet" href = "{% static "generate/signup.css" %}">
+{% endblock %}
+
+
+
+
+{% block content %}
+    <div class="background-photos">
+        <div class="background-photo photo1"><img src="{% static 'generate/photos/p1.png' %}" alt="{{ post.title }}" />
+        </div>
+        <div class="background-photo photo2">
+            <img src="{% static 'generate/photos/p2.png' %}" alt="{{ post.title }}" />
+
+        </div>
+        <div class="background-photo photo3">
+            <img src="{% static 'generate/photos/p3.png' %}" alt="{{ post.title }}" />
+        </div>
+        <div class="background-photo photo4">
+            <img src="{% static 'generate/photos/p4.png' %}" alt="{{ post.title }}" />
+        </div>
+        <div class="background-photo photo5">
+            <img src="{% static 'generate/photos/p5.png' %}" alt="{{ post.title }}" />
+        </div>
+        <div class="background-photo photo6">
+            <img src="{% static 'generate/photos/p6.png' %}" alt="{{ post.title }}" />
+        </div>
+        <div class="background-photo photo7">
+            <img src="{% static 'generate/photos/p7.png' %}" alt="{{ post.title }}" />
+        </div>
+        <div class="background-photo photo8">
+            <img src="{% static 'generate/photos/p8.png' %}" alt="{{ post.title }}" />
+        </div>
+        <div class="background-photo photo9">
+            <img src="{% static 'generate/photos/p9.png' %}" alt="{{ post.title }}" />
+        </div>
+    </div>
+
+    <div class = "container">
+        <div class="card">
+            <div class="card-body">
+                <h1>Sign Up</h1>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    {{ form.username.errors }}
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                    <div class="buttons">
+                        <button type="submit">Sign Up</button>
+                        <button type="button" onclick="location.href='{% url 'login' %}'">Log In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+        {% comment %} <div class="card login-card">
+            <div class="card-body">
+                <form method="get" action="{% url 'login' %}">
+                    <p>Already have an existing account? </p>
+                    <button type="submit">Log In</button>
+                </form>
+            </div>
+        </div> {% endcomment %}
+    </div>
+
+{% endblock %}
