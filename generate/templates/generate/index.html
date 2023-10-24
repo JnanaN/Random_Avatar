@@ -1,22 +1,26 @@
 {% extends "generate/base.html" %}
-
+{% load static %}
 {% block title %}
 Home Page
 {% endblock %}
 
 
-
+{% block css_files %}   
+<link rel ="stylesheet" href = "{% static "generate/index.css" %}">
+{% endblock%}
 
 
 {% block content %}
 
 
     <h1> GENERATE RANDOM AVATAR </h1>
+    <p>To generate a random avatar click on :     <button id="random">Generate Random</button></p>
     <form id="form">
-        <input type="text" name="seed" placeholder="Enter seed" id="seed" required>
+        <p>To generate a seed </p>
+            <input type="text" name="seed" placeholder="Enter seed" id="seed" required>
         <button type="submit">Generate Avatar</button>
     </form>
-    <button id="random">Generate Random</button>
+    
     <div id="avatar"></div>
     <script>
         btn = document.getElementById("random")

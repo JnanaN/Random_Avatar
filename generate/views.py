@@ -22,7 +22,23 @@ color_codes = {
     12: "#00FFFF",
     13: "#4B0082",
     14: "#FFD700",
-    15: "#008080"
+    15: "#008080",
+    16: "#FFE4E1",  # Misty Rose
+    17: "#87CEEB",  # Sky Blue
+    18: "#FFDAB9",  # PeachPuff
+    19: "#98FB98",  # Pale Green
+    20: "#FFB6C1",  # Light Pink
+    21: "#F0E68C",  # Khaki
+    22: "#DDA0DD",  # Plum
+    23: "#7B68EE",  # Medium Slate Blue
+    24: "#F5DEB3",  # Wheat
+    25: "#FFE4B5",  # Moccasin
+    26: "#66CDAA",  # Medium Aquamarine
+    27: "#FFA07A",  # Light Salmon
+    28: "#F0FFF0",  # Honeydew
+    29: "#B0E0E6",  # Powder Blue
+    30: "#E0FFFF",  # Light Cyan
+    31: "#98FB98",  # Pale Green
 }
 
 
@@ -34,7 +50,7 @@ def index(request):
 def avatar_input(request, seed):
     user_input = seed
     ascii_sum = sum(ord(char) for char in user_input)
-    color = ascii_sum % 15 + 1
+    color = ascii_sum % 31 + 1
     eye = ascii_sum % 10 + 1
     mouth = ascii_sum % 10+1
     final_svg = avatar(color, eye, mouth)
@@ -67,7 +83,7 @@ def avatar(color, eye , mouth):
 # generate random avatar
 def random_avatar(request):
     # Generate a random number between 1 and 10 (inclusive)
-    random_color = random.randint(1,15)
+    random_color = random.randint(1,31)
     random_eye = random.randint(1, 10)
     random_mouth = random.randint(1,10)
     final_svg = avatar(random_color,random_eye , random_mouth)
