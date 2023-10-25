@@ -1,0 +1,62 @@
+/* Reset default margin and padding for the header */
+header {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the navigation bar */
+nav {
+    background-color: #333; /* Background color of the navbar */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Add padding to adjust spacing as needed */
+    color: #fff; /* Text color for the navbar */
+}
+
+
+
+/* Style the logo */
+.logo img {
+    height: 40px; /* Adjust the height of your logo */
+    width: auto;
+}
+
+/* Style the navigation links */
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    font-family: 'Bubblegum Sans', sans-serif;
+    font-size:xx-large
+}
+
+.nav-links li {
+    margin-right: 20px; /* Adjust spacing between navigation links */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff; /* Text color for links */
+}
+
+/* Style the "Random" button */
+.random-button {
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border-radius: 5px; /* Add rounded corners to the button */
+    text-decoration: none;
+}
+
+/* Style the "Random" button on hover */
+.random-button:hover {
+    background-color: #0056b3; /* Change the color on hover */
+}
+
+
+/* Add margin to create space below the navigation bar */
+section {
+    margin-top: 10px; /* Adjust the value as needed */
+}
