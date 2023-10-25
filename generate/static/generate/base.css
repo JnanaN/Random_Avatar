@@ -14,6 +14,8 @@ nav {
     color: #fff; /* Text color for the navbar */
 }
 
+
+
 /* Style the logo */
 .logo img {
     height: 40px; /* Adjust the height of your logo */
@@ -26,6 +28,8 @@ nav {
     margin: 0;
     padding: 0;
     display: flex;
+    font-family: 'Bubblegum Sans', sans-serif;
+    font-size:xx-large
 }
 
 .nav-links li {

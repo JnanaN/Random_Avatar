@@ -1,7 +1,7 @@
 {% extends "generate/base.html" %}
 {% load static %}
 {% block title %}
-Home Page
+GENERATE AVATAR
 {% endblock %}
 
 
@@ -13,10 +13,9 @@ Home Page
 {% block content %}
 
 
-    <h1> GENERATE RANDOM AVATAR </h1>
-    <p>To generate a random avatar click on :     <button id="random">Generate Random</button></p>
+    <p><p class = "second"><i>To generate a random avatar click below :</i></p><button id="random">Generate Random</button></p>
     <form id="form">
-        <p>To generate a seed </p>
+        <p class = second ><i>To generate a seed click below: </i></p>
             <input type="text" name="seed" placeholder="Enter seed" id="seed" required>
         <button type="submit">Generate Avatar</button>
     </form>

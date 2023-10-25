@@ -10,6 +10,7 @@ h1{
     color: rgb(13, 1, 70)
 }
 p{
+    color:rgb(41, 1, 47);
     margin-top: 40px;
     margin-left: 20px;
 }
@@ -29,7 +30,7 @@ p{
     display: inline-block; /* Display buttons side by side */
     margin-bottom: 20px;
     vertical-align: top;
-    /* margin-left: 20px; */
+    margin-top: 0;
 }
 
 /* Style the input field and button */
@@ -51,6 +52,8 @@ button {
     cursor: pointer;
 }
 
+
+
 /* Style the URL and download buttons */
 #url, #downloadPNGButton, #downloadSVGButton {
     display: none;
@@ -69,4 +72,12 @@ button {
         display: block;
         
     }
+}
+#random{
+    margin-left: 20px;
+}
+
+.second{
+    margin-top: 0%;
+    font-size:xx-large
 }
