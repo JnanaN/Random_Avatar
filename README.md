@@ -30,6 +30,9 @@ To set up this project locally, follow these steps:
 3. Apply database migrations to create the SQLite database.
 4. Start the Django development server.
 
+## Link to screenshots:
+https://docs.google.com/document/d/12PGKVWQFdb_FpCOZ31p6iLI5Lbso6uEyXY3g9whvHlA/edit?usp=sharing
+
 ## Usage
 1. Access the web application from your browser.
 2. Register for an account or log in if you already have one.
