@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login , authenticate
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .models import Eye , Mouth
 
 
 color_codes = {
@@ -60,13 +61,10 @@ def avatar_input(request, seed):
 # function to generate the svg given eyes and mouth
 def avatar(color, eye , mouth):
      
-    eye_path = f"generate/eyes/{eye}.svg"
-    with open(eye_path, "r") as eye_file:
-            eye_svg = eye_file.read()
+    eye_svg = Eye.objects.get(pk=eye).eye_svg
+    mouth_svg = Mouth.objects.get(pk=mouth).mouth_svg
 
-    mouth_path = f"generate/mouth/{mouth}.svg"
-    with open(mouth_path, "r") as mouth_file:
-            mouth_svg = mouth_file.read()
+    
     
     color_svg = color_codes[color]
     
