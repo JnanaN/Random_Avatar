@@ -1,0 +1,124 @@
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Hide scroll bars */
+    background-color: rgba(22, 21, 21, 0.843);
+}
+
+/* Style the background photos using CSS Grid */
+.background-photos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Create 3 columns */
+    grid-template-rows: repeat(3, 1fr); /* Create 3 rows */
+    z-index: -1; /* Send photos to the background */
+}
+
+.background-photo {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.background-photo::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(215, 209, 209, 0.031);
+    z-index: 1;
+}
+
+
+
+
+
+.card-body {
+    padding: 2rem;
+}
+
+.card h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+
+
+form {
+    max-width: 300px;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #02101ad4;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color:beige
+}
+
+/* Style the form labels */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style the form input fields */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Style the login button */
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+/* Add spacing between form elements */
+form label,
+form input,
+button[type="submit"] {
+    margin-bottom: 10px;
+}
+
+
+button[type="button"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+/* Add spacing between form elements */
+form label,
+form input,
+button[type="button"] {
+    margin-bottom: 10px;
+}

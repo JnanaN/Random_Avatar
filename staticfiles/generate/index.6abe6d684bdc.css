@@ -1,0 +1,83 @@
+/* Center the content in the middle of the page */
+body {
+    background-color: rgb(221, 215, 221);
+    margin-left: 20 px;
+}
+h1{
+    margin-left: 20px;
+    text-align: center;
+    text-decoration: underline;
+    color: rgb(13, 1, 70)
+}
+p{
+    color:rgb(41, 1, 47);
+    margin-top: 40px;
+    margin-left: 20px;
+}
+#avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    margin: 0 20px;
+    padding: 0;
+}
+
+/* Style the form and buttons */
+#form, #random {
+    display: inline-block; /* Display buttons side by side */
+    margin-bottom: 20px;
+    vertical-align: top;
+    margin-top: 0;
+}
+
+/* Style the input field and button */
+input[type="text"] {
+    width: 40%;
+    padding: 10px;
+    margin-left: 20px;
+    margin-bottom: 0 ;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    background-color: #4a0529;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+
+/* Style the URL and download buttons */
+#url, #downloadPNGButton, #downloadSVGButton {
+    display: none;
+    margin-top: 20px;
+}
+
+/* Style the URL link */
+#url a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Show the URL and download buttons when the image is generated */
+#avatar:has(#url), #avatar:has(#downloadPNGButton), #avatar:has(#downloadSVGButton) {
+    #url, #downloadPNGButton, #downloadSVGButton {
+        display: block;
+        
+    }
+}
+#random{
+    margin-left: 20px;
+}
+
+.second{
+    margin-top: 0%;
+    font-size:xx-large
+}
