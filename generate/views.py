@@ -2,7 +2,8 @@ from django.shortcuts import render,redirect
 import random
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login , authenticate
+from django.contrib.auth import login , authenticate, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Eye , Mouth
@@ -43,8 +44,9 @@ color_codes = {
 }
 
 
-
 def index(request):
+    if not request.user.is_authenticated:
+         return redirect("login")
     return render(request, "generate/index.html")
 
 
@@ -110,6 +112,7 @@ def signup(request):
             form = CustomRegistrationForm()
       return render(request, "generate/signup.html", {"form" : form})
 
+
 # login
 def login_view(request):
     if request.method == "POST":
@@ -122,3 +125,7 @@ def login_view(request):
           else:
             messages.error(request, 'Invalid login credentials. Please try again.')
     return render(request, 'generate/login.html')      
+
+def logout_view(request):
+     logout(request)
+     return redirect("signup")
